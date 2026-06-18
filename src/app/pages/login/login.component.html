@@ -1,0 +1,56 @@
+<div class="login-page">
+
+  <!-- CHAP PANEL -->
+  <div class="left-panel">
+    <div class="brand">
+      <div class="logo">M</div>
+      <h1>MetaCRM</h1>
+    </div>
+    <p class="tagline">O'quv markazingizni boshqarish uchun yagona platforma</p>
+    <ul class="features">
+      <li>👥 Talabalar boshqaruvi</li>
+      <li>📅 Davomatni kuzatish</li>
+      <li>💳 To'lov nazorati</li>
+    </ul>
+  </div>
+
+  <!-- O'NG PANEL -->
+  <div class="right-panel">
+    <div class="form-wrapper">
+      <h2>Xush kelibsiz</h2>
+      <p class="sub">Hisobingizga kiring</p>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="field">
+          <label>Email manzil</label>
+          <input type="email" formControlName="email" placeholder="admin@metacrm.uz" />
+          <span class="err" *ngIf="email.touched && email.errors?.['required']">Email kiritish shart</span>
+          <span class="err" *ngIf="email.touched && email.errors?.['email']">Email noto'g'ri formatda</span>
+        </div>
+
+        <div class="field">
+          <label>Parol</label>
+          <div class="password-wrap">
+            <input [type]="showPassword ? 'text' : 'password'"
+                   formControlName="password"
+                   placeholder="••••••••" />
+            <button type="button" class="toggle-pass" (click)="showPassword = !showPassword">
+              {{ showPassword ? '🙈' : '👁️' }}
+            </button>
+          </div>
+          <span class="err" *ngIf="password.touched && password.errors?.['required']">Parol kiritish shart</span>
+          <span class="err" *ngIf="password.touched && password.errors?.['minlength']">Kamida 6 ta belgi</span>
+        </div>
+
+        <div class="alert-err" *ngIf="error">{{ error }}</div>
+
+        <button type="submit" class="btn-submit" [disabled]="loading">
+          {{ loading ? 'Kirish...' : 'Kirish' }}
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+</div>

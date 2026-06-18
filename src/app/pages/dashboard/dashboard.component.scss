@@ -1,0 +1,140 @@
+.dashboard {
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: #185FA5;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    .username {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .btn-logout {
+      padding: 6px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #f5f6fa;
+        border-color: #185FA5;
+        color: #185FA5;
+      }
+    }
+  }
+}
+
+.main {
+  padding: 2rem;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+  }
+
+  .welcome {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 2rem;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #e0e0e0;
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #888;
+    }
+  }
+}
+
+.placeholder {
+  background: white;
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  border: 1px dashed #e0e0e0;
+
+  p {
+    font-size: 15px;
+    color: #aaa;
+  }
+}
