@@ -5,7 +5,7 @@ import { LoginRequest, LoginResponse } from '../models/auth.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://localhost:7180/api/auth';
+  private apiUrl = 'https://metacrm-backend-production.up.railway.app/api/auth';
 
   constructor(private http: HttpClient) {}
 
