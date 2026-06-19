@@ -1,23 +1,12 @@
-<div class="dashboard">
+<div class="layout">
+  <app-sidebar></app-sidebar>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-left">
-      <div class="logo">M</div>
-      <span class="brand">MetaCRM</span>
+  <div class="main-content">
+    <div class="page-header">
+      <h2>Bosh sahifa</h2>
+      <p class="welcome">Xush kelibsiz, {{ user?.fullName }}!</p>
     </div>
-    <div class="header-right">
-      <span class="username">{{ user?.fullName }}</span>
-      <button class="btn-logout" (click)="logout()">Chiqish</button>
-    </div>
-  </div>
 
-  <!-- MAIN -->
-  <div class="main">
-    <h2>Bosh sahifa</h2>
-    <p class="welcome">Xush kelibsiz, {{ user?.fullName }}!</p>
-
-    <!-- STATS -->
     <div class="stats-grid">
       <div class="stat-card" *ngFor="let stat of stats">
         <div class="stat-icon" [style.background]="stat.color + '15'">
@@ -30,10 +19,8 @@
       </div>
     </div>
 
-    <!-- PLACEHOLDER -->
     <div class="placeholder">
       <p>📊 Tez orada bu yerda grafik va jadvallar bo'ladi</p>
     </div>
   </div>
-
 </div>
