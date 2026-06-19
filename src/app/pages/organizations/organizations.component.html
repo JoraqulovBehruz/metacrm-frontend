@@ -1,0 +1,81 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="main-content">
+    <div class="page-header">
+      <div>
+        <h2>Tashkilotlar</h2>
+        <p class="sub">Barcha maktab va o'quv markazlar</p>
+      </div>
+      <button class="btn-add" (click)="openModal()">+ Yangi tashkilot</button>
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading" *ngIf="loading">Yuklanmoqda...</div>
+
+    <!-- BO'SH -->
+    <div class="empty" *ngIf="!loading && organizations.length === 0">
+      <p>🏢 Hali tashkilot qo'shilmagan</p>
+      <button class="btn-add" (click)="openModal()">Birinchi tashkilotni qo'shish</button>
+    </div>
+
+    <!-- RO'YXAT -->
+    <div class="org-grid" *ngIf="!loading && organizations.length > 0">
+      <div class="org-card" *ngFor="let org of organizations">
+        <div class="org-header">
+          <div class="org-avatar">{{ org.name[0] }}</div>
+          <div>
+            <h3>{{ org.name }}</h3>
+            <span class="badge">{{ getTypeName(org.type) }}</span>
+          </div>
+        </div>
+        <div class="org-info">
+          <p>📞 {{ org.phone }}</p>
+          <p>📧 {{ org.email }}</p>
+          <p>📍 {{ org.address }}</p>
+        </div>
+        <div class="org-actions">
+          <button class="btn-edit" (click)="openModal(org)">Tahrirlash</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ isEditing ? 'Tashkilotni tahrirlash' : 'Yangi tashkilot' }}</h3>
+      <button class="close-btn" (click)="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Nomi</label>
+        <input type="text" [(ngModel)]="form.name" placeholder="Tashkilot nomi" />
+      </div>
+      <div class="field">
+        <label>Turi</label>
+        <select [(ngModel)]="form.type">
+          <option *ngFor="let t of orgTypes" [value]="t.value">{{ t.label }}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Telefon</label>
+        <input type="text" [(ngModel)]="form.phone" placeholder="+998901234567" />
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="form.email" placeholder="info@markaz.uz" />
+      </div>
+      <div class="field">
+        <label>Manzil</label>
+        <input type="text" [(ngModel)]="form.address" placeholder="Shahar, ko'cha" />
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">Bekor qilish</button>
+      <button class="btn-save" (click)="save()">Saqlash</button>
+    </div>
+  </div>
+</div>
