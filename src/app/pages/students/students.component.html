@@ -1,0 +1,124 @@
+<div class="layout">
+  <app-sidebar></app-sidebar>
+
+  <div class="main-content">
+    <div class="page-header">
+      <div>
+        <h2>Talabalar</h2>
+        <p class="sub">Barcha talabalar ro'yxati</p>
+      </div>
+      <button class="btn-add" (click)="openModal()">+ Yangi talaba</button>
+    </div>
+
+    <!-- QIDIRUV -->
+    <div class="search-bar">
+      <input type="text" [(ngModel)]="searchText" placeholder="🔍 Ism yoki telefon bo'yicha qidirish..." />
+    </div>
+
+    <!-- LOADING -->
+    <div class="loading" *ngIf="loading">Yuklanmoqda...</div>
+
+    <!-- BO'SH -->
+    <div class="empty" *ngIf="!loading && filteredStudents.length === 0">
+      <p>👥 Hali talaba qo'shilmagan</p>
+      <button class="btn-add" (click)="openModal()">Birinchi talabani qo'shish</button>
+    </div>
+
+    <!-- JADVAL -->
+    <div class="table-wrap" *ngIf="!loading && filteredStudents.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ism familiya</th>
+            <th>Telefon</th>
+            <th>Ota-ona telefoni</th>
+            <th>Guruh</th>
+            <th>Tashkilot</th>
+            <th>Holat</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of filteredStudents; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <div class="student-name">
+                <div class="avatar">{{ s.fullName[0] }}</div>
+                {{ s.fullName }}
+              </div>
+            </td>
+            <td>{{ s.phone }}</td>
+            <td>{{ s.parentPhone }}</td>
+            <td>{{ getGroupName(s.groupId) }}</td>
+            <td>{{ getOrgName(s.organizationId) }}</td>
+            <td>
+              <span class="badge" [class.active]="s.isActive" [class.inactive]="!s.isActive">
+                {{ s.isActive ? 'Faol' : 'Nofaol' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn-edit" (click)="openModal(s)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" *ngIf="showModal" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ isEditing ? 'Talabani tahrirlash' : 'Yangi talaba' }}</h3>
+      <button class="close-btn" (click)="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>Ism familiya</label>
+        <input type="text" [(ngModel)]="form.fullName" placeholder="To'liq ism" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Telefon</label>
+          <input type="text" [(ngModel)]="form.phone" placeholder="+998901234567" />
+        </div>
+        <div class="field">
+          <label>Ota-ona telefoni</label>
+          <input type="text" [(ngModel)]="form.parentPhone" placeholder="+998901234567" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Tashkilot</label>
+          <select [(ngModel)]="form.organizationId">
+            <option value="0">Tanlang...</option>
+            <option *ngFor="let o of organizations" [value]="o.id">{{ o.name }}</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Guruh</label>
+          <select [(ngModel)]="form.groupId">
+            <option [value]="null">Guruhsiz</option>
+            <option *ngFor="let g of groups" [value]="g.id">{{ g.name }}</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Tug'ilgan sana</label>
+          <input type="date" [(ngModel)]="form.birthDate" />
+        </div>
+        <div class="field">
+          <label>Manzil</label>
+          <input type="text" [(ngModel)]="form.address" placeholder="Shahar, ko'cha" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">Bekor qilish</button>
+      <button class="btn-save" (click)="save()">Saqlash</button>
+    </div>
+  </div>
+</div>

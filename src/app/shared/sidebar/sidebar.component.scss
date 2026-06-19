@@ -1,7 +1,7 @@
 .sidebar {
   width: 240px;
   height: 100vh;
-  background: #1a1a2e;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
   display: flex;
   flex-direction: column;
   transition: width 0.3s ease;
@@ -9,9 +9,20 @@
   left: 0;
   top: 0;
   z-index: 100;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.15);
 
   &.collapsed {
-    width: 64px;
+    width: 68px;
+
+    .nav-item {
+      justify-content: center;
+      padding: 12px 0;
+    }
+
+    .logout-btn {
+      justify-content: center;
+      padding: 10px 0;
+    }
   }
 }
 
@@ -20,7 +31,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 
   .logo-wrap {
     display: flex;
@@ -30,100 +41,115 @@
     .logo {
       width: 36px;
       height: 36px;
-      background: #185FA5;
-      border-radius: 50%;
+      background: linear-gradient(135deg, #185FA5, #2d8cf0);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 16px;
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(24,95,165,0.4);
     }
 
     .brand {
       color: white;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       white-space: nowrap;
+      letter-spacing: -0.3px;
     }
   }
 
   .toggle-btn {
-    background: none;
-    border: none;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
     color: rgba(255,255,255,0.5);
     cursor: pointer;
-    font-size: 16px;
-    padding: 4px;
-    border-radius: 4px;
+    font-size: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
 
     &:hover {
       color: white;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.12);
     }
   }
 }
 
 .sidebar-nav {
   flex: 1;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   overflow-y: auto;
 
   .nav-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 1rem;
-    color: rgba(255,255,255,0.6);
+    gap: 10px;
+    padding: 10px 1rem;
+    margin: 2px 8px;
+    border-radius: 8px;
+    color: rgba(255,255,255,0.55);
     text-decoration: none;
     transition: all 0.2s;
     white-space: nowrap;
+    font-size: 14px;
+    font-weight: 500;
 
     &:hover {
-      background: rgba(255,255,255,0.08);
-      color: white;
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.9);
     }
 
     &.active {
-      background: #185FA5;
+      background: linear-gradient(135deg, #185FA5, #2d8cf0);
       color: white;
+      box-shadow: 0 4px 12px rgba(24,95,165,0.35);
     }
 
     .nav-icon {
-      font-size: 18px;
-      width: 24px;
+      font-size: 17px;
+      width: 22px;
       text-align: center;
       flex-shrink: 0;
     }
 
     .nav-label {
-      font-size: 14px;
+      font-size: 13.5px;
     }
   }
 }
 
 .sidebar-footer {
-  padding: 1rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
 
   .logout-btn {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     width: 100%;
     padding: 10px 1rem;
     background: none;
     border: none;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.45);
     cursor: pointer;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13.5px;
+    font-weight: 500;
     white-space: nowrap;
+    transition: all 0.2s;
 
     &:hover {
-      background: rgba(255,0,0,0.15);
-      color: #ff6b6b;
+      background: rgba(239,68,68,0.12);
+      color: #f87171;
     }
   }
 }
